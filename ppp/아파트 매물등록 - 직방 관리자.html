@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)https://admin.zigbang.com/apartitem/ItemAdd?user_no=4803011 -->
+<html style="" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>아파트 매물등록 - 직방 관리자</title>
+	<meta name="msapplication-TileImage" content="//s.zigbang.com/legacy/icon_zigbang.png">
+	<meta name="msapplication-TileColor" content="#ffd46c">
+	<meta name="google-signin-client_id" content="737885979199-b5kuod1skooilqr44ahn7nqouik9t7oj.apps.googleusercontent.com">
+	<link rel="shortcut icon" type="image/x-icon" href="https://s.zigbang.com/legacy/images/v1/favicon.ico">
+
+    <link href="./아파트 매물등록 - 직방 관리자_files/jquery-ui.min.css" rel="stylesheet">
+    <link href="./아파트 매물등록 - 직방 관리자_files/admin.less" rel="stylesheet">
+
+    <link href="./아파트 매물등록 - 직방 관리자_files/style.min.css" rel="stylesheet">
+
+    <script src="./아파트 매물등록 - 직방 관리자_files/cb=gapi.loaded_0" async=""></script><script src="./아파트 매물등록 - 직방 관리자_files/modernizr-2.6.2.js"></script>
+
+
+    
+	<style type="text/css">
+		.w80 { width: 80px !important; }
+		.w100 { width: 100px !important; }
+		.w150 { width: 150px !important; }
+		.w200 { width: 200px !important; }
+		.w350 { width: 350px !important; }
+		.w100p { width: 100% !important; }
+		.ml-10 { margin-left: 10px !important; }
+		.notify { 
+			font-size: 12px;
+			font-weight: 400;
+			color: #d76953;
+		}
+		#files {
+			padding: 20px 20px 10px;
+			background: #f8f8f8;
+			border: 1px solid #cfcfcf;
+			overflow: hidden;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box
+		}
+		#files .selectable {
+			position: relative;
+			float: left;
+			margin: 2px 10px 10px 0;
+		}
+		#files .selectable,#files .selectable .selectable-content img {
+			width: 100px;
+			height: 100px
+		}
+		#files .selectable .selectable-layer span {
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 10;
+		}
+		#files .selectable .selectable-layer {
+			display: none;
+			position: absolute;
+			left: -4px;
+			top: -4px;
+			width: 100px;
+			height: 100px;
+			border: 4px solid #333
+		}
+
+		#files .selectable .selectable-layer span {
+			display: block;
+			color: #fff;
+			width: 1.5em;
+			height: 1.5em;
+			line-height: 1.5em;
+			background-color: #333;
+			text-align: center;
+			font-weight: 700;
+			font-size: 13px;
+		}
+		#files .selectable .selectable-layer button {
+			position: absolute;
+			right: -5px;
+			top: -5px;
+			width: 15px;
+			height: 15px;
+			border-radius: 10px;
+			border: 1px solid #333;
+			background: #fff;
+			font-size: 10px;
+			padding: 1px 4px;
+		}
+		#files .progress {
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			width: 100%;
+			background: #52b306;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box
+		}
+		#files .progress,#files .progress-bar {
+			border: 1px solid #52b306
+		}
+		#files .sortable-placeholder {
+			float: left;
+			width: 100px;
+			height: 100px;
+			margin-right: 10px;
+			border: 2px dashed #ccc;
+			background: none
+		}
+		#files #flow-drop {
+			float: left;
+			width: 100px;
+			height: 100px;
+			margin-bottom: 10px;
+			border: 2px dashed #666;
+			background: #fff;
+			font-size: 36px;
+			line-height: 100px;
+			text-align: center
+		}
+	</style>
+
+	
+	<style type="text/css">
+		.global-loader {
+			border: 5px solid #f3f3f3;
+			border-top: 5px solid #000000;
+			border-radius: 50%;
+			width: 30px;
+			height: 30px;
+			animation: spin 1s linear infinite;
+		}
+
+		.global-indicator-div {
+			text-align: center;
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background: rgba(0, 0, 0, 0.5);
+			z-index: 10000;
+			color: #fff;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+		}
+		
+		@keyframes spin {
+			0% { transform: rotate(0deg); }
+
+			100% { transform: rotate(360deg); }
+		}
+	</style>
+	
+	<script type="text/javascript">
+        String.prototype.format = function (args) {
+            var str = this;
+            return str.replace(String.prototype.format.regex, function (item) {
+                var intVal = parseInt(item.substring(1, item.length - 1));
+                var replace;
+                if (intVal >= 0) {
+                    replace = args[intVal];
+                } else if (intVal === -1) {
+                    replace = "{";
+                } else if (intVal === -2) {
+                    replace = "}";
+                } else {
+                    replace = "";
+                }
+                return replace;
+            });
+        };
+        String.prototype.format.regex = new RegExp("{-?[0-9]+}", "g");
+    </script>
+</head>
+<body oncontextmenu="return true" ondragstart="return true" onselectstart="return true">
+    <header class="header" id="header">
+        <h1><a href="https://admin.zigbang.com/" class="navbar-brand"><img src="./아파트 매물등록 - 직방 관리자_files/logo.png" alt="직방"></a></h1>
+        <button type="button" class="btn-menu" id="btn-menu"><em class="zbIcon icon-threeline"></em></button>
+        <div class="gnb-container">
+	        <ul class="gnb">
+				        <li class="dropdown">
+					        <a href="https://admin.zigbang.com/apartitem/ItemAdd?user_no=4803011#" class="dropdown-toggle" data-toggle="dropdown">사용자 관리 <b class="caret"></b></a>
+					        <ul class="dropdown-menu">
+						        <li><a href="https://admin.zigbang.com/agent">중개인신청 관리</a></li>
+						        <li><a href="https://admin.zigbang.com/user">사용자 내역 관리</a></li>
+						        <li><a href="https://admin.zigbang.com/inbound">인바운드 관리</a></li>
+						        <li><a href="https://admin.zigbang.com/agent/register">담당자 승인 관리</a></li>
+						        <li><a href="https://admin.zigbang.com/user/profileregister">프로필 승인 관리</a></li>
+						        <li><a href="https://admin.zigbang.com/user/trustagreement">안심동의 관리</a></li>
+						        <li><a href="https://admin.zigbang.com/user/markedagent">요주의 부동산</a></li>
+						        <li><a href="https://admin.zigbang.com/user/blacklist">블랙리스트</a></li>
+						        <li><a href="https://admin.zigbang.com/penalty">중개사무소 패널티 관리</a></li>
+						        <li><a href="https://admin.zigbang.com/penalty/agent">담당자 패널티 관리</a></li>
+						        <li><a href="https://admin.zigbang.com/user/SmsBlacklist">문자 블랙리스트</a></li>
+						        <li><a href="https://admin.zigbang.com/Inquiry">고객문의</a></li>
+					        </ul>
+				        </li>
+				        <li class="dropdown">
+					        <a href="https://admin.zigbang.com/apartitem/ItemAdd?user_no=4803011#" class="dropdown-toggle" data-toggle="dropdown">매물 관리 <b class="caret"></b></a>
+					        <ul class="dropdown-menu">
+						        <li><a href="https://admin.zigbang.com/item">매물 관리</a></li>
+						        <li><a href="https://admin.zigbang.com/apartitem">매물 관리(아파트)</a></li>
+						        <li><a href="https://admin.zigbang.com/VrTour">VR 홈투어 신청 관리</a></li>
+						        <li><a href="https://admin.zigbang.com/area/list">단지 관리</a></li>
+						        <li><a href="https://admin.zigbang.com/item/notify2">신고 관리</a></li>
+						        <li><a href="https://admin.zigbang.com/apartitem/notify">신고 관리(아파트)</a></li>
+						        <li><a href="https://admin.zigbang.com/item/itemvisitreport">보상신청 관리</a></li>
+						        <li><a href="https://admin.zigbang.com/apartitem/visitreport">보상신청 관리(아파트)</a></li>
+						        <li><a href="https://admin.zigbang.com/etc/inquiry">매물문의 관리</a></li>
+						        <li><a href="https://admin.zigbang.com/item/premiumtell">안심상품 알림</a></li>
+					        </ul>
+				        </li>
+				        <li class="dropdown">
+					        <a href="https://admin.zigbang.com/apartitem/ItemAdd?user_no=4803011#" class="dropdown-toggle" data-toggle="dropdown">공실 관리 <b class="caret"></b></a>
+					        <ul class="dropdown-menu">
+						        <li><a href="https://admin.zigbang.com/room">공실 관리</a></li>
+						        <li><a href="https://admin.zigbang.com/room/SimpleRequest">간편신청 관리</a></li>
+						        <li><a href="https://admin.zigbang.com/ApartRequest">공실 관리(아파트)</a></li>
+						        <li><a href="https://admin.zigbang.com/item/notifyroom">신고 관리(공실)</a></li>
+						        <li><a href="https://admin.zigbang.com/apart/request/report">신고 관리(아파트 공실)</a></li>
+						        <li><a href="https://admin.zigbang.com/room/RoomTell">공실 알림</a></li>
+						        <li><a href="https://admin.zigbang.com/ApartOpen">신규입주아파트 관리</a></li>
+					        </ul>
+				        </li>
+				        <li class="dropdown">
+					        <a href="https://admin.zigbang.com/apartitem/ItemAdd?user_no=4803011#" class="dropdown-toggle" data-toggle="dropdown">현황 보기 <b class="caret"></b></a>
+					        <ul class="dropdown-menu">
+						        <li><a href="https://admin.zigbang.com/user/localUsers">사용자 현황</a></li>
+						        <li><a href="https://admin.zigbang.com/item/itemAnalytics">통계 관리</a></li>
+					        </ul>
+				        </li>
+	        </ul>
+            <div class="top-info">
+                <form action="https://admin.zigbang.com/Account/Logout" class="navbar-right" id="logoutForm" method="post"><input name="__RequestVerificationToken" type="hidden" value="O9RVHcCzrw-w2Qt1C59JtXzY_2R5rUJQSo3zDazjzM0CVHiTEd7kEQk96_sVAm6bhhxuKMnq-KJODv19Axds2_ChKOgDeExEjtuSLBZz4cChRkcDutmOU6ngvGXAE_I4u3iHZw2"><a href="https://admin.zigbang.com/password">비밀번호 변경</a>			<a href="https://admin.zigbang.com/apartitem/ItemAdd?user_no=4803011#" id="btn-signout">Log off</a>
+</form>
+            </div>
+        </div>
+    </header>
+
+    <div class="container body-content">
+        
+
+<h1 class="page-title">아파트 매물등록</h1>
+
+<div class="list-container">
+	<table class="list-table">
+		<colgroup>
+			<col width="15%">
+			<col>
+		</colgroup>
+		<tbody>
+		<tr>
+			<th>단지명 *</th>
+			<td>
+				<select id="target_apart" class="w350">
+					<option value="">선택</option>
+						<option value="38486" data-area_danji_id="38486" data-name="송도더샵센트럴시티" data-local1="인천광역시" data-local2="연수구" data-local3="송도동" data-address2="190-4" data-household="2,610세대" data-lat="37.3738708496094" data-lng="126.651206970215" data-is_vr_available="True">
+							송도더샵센트럴시티 / 인천광역시 연수구 송도동 / 2,610세대
+						</option>
+						<option value="50293" data-area_danji_id="50293" data-name="e편한세상송도" data-local1="인천광역시" data-local2="연수구" data-local3="송도동" data-address2="319-1" data-household="2,708세대" data-lat="37.4114627223473" data-lng="126.617440059415" data-is_vr_available="True">
+							e편한세상송도 / 인천광역시 연수구 송도동 / 2,708세대
+						</option>
+						<option value="37789" data-area_danji_id="37789" data-name="인천송도SKVIEW" data-local1="인천광역시" data-local2="연수구" data-local3="송도동" data-address2="315-1" data-household="2,100세대" data-lat="37.4129857" data-lng="126.627118" data-is_vr_available="True">
+							인천송도SKVIEW / 인천광역시 연수구 송도동 / 2,100세대
+						</option>
+						<option value="37934" data-area_danji_id="37934" data-name="송도동일하이빌파크레인" data-local1="인천광역시" data-local2="연수구" data-local3="동춘동" data-address2="724" data-household="1,180세대" data-lat="37.4075957" data-lng="126.65776" data-is_vr_available="True">
+							송도동일하이빌파크레인 / 인천광역시 연수구 동춘동 / 1,180세대
+						</option>
+						<option value="38027" data-area_danji_id="38027" data-name="연수파크자이" data-local1="인천광역시" data-local2="연수구" data-local3="동춘동" data-address2="750-1" data-household="1,023세대" data-lat="37.4106712341309" data-lng="126.655975341797" data-is_vr_available="True">
+							연수파크자이 / 인천광역시 연수구 동춘동 / 1,023세대
+						</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>출처 *</th>
+			<td>
+				<label><input type="radio" name="exclusive_type" id="item-exclusive" value="1"> 직접 확보 매물</label>
+				<label><input type="radio" name="exclusive_type" id="item-share" value="2"> 공동 중개 매물</label>
+			</td>
+		</tr>
+		<tr id="tr_image" style="display: none;">
+			<th>사진</th>
+			<td>
+				<div id="image_area" style="position: relative;">
+					<a id="pickfiles" href="javascript:;" class="btn btn-submit min" style="position: relative; z-index: 1;">사진 등록하기</a>
+				<div id="html5_1d6i7bu8o2mr1vstl941ie7mio3_container" class="moxie-shim moxie-shim-html5" style="position: absolute; top: 0px; left: 0px; width: 0px; height: 0px; overflow: hidden; z-index: 0;"><input id="html5_1d6i7bu8o2mr1vstl941ie7mio3" type="file" style="font-size: 999px; opacity: 0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" multiple="" accept="image/jpeg,image/png"></div></div>
+				<div id="file_area" style="display: none;">
+					<div id="files" style="margin-top:20px;">
+						<div id="base_div" class="hide" draggable="true">
+						</div>
+					</div>
+					<pre id="console" class="mb30"></pre>
+				</div>
+			</td>
+		</tr>
+		</tbody>
+	</table>	
+</div>
+
+<div class="list-container">
+	<table class="list-table">
+		<colgroup>
+			<col width="15%">
+			<col width="35%">
+			<col width="15%">
+			<col width="35%">
+		</colgroup>
+		<tbody>
+		<tr>
+			<th>거래유형 *</th>
+			<td>
+				<select id="sales_type" name="sales_type" class="w150">
+						<option value="매매">매매</option>
+						<option value="전세">전세</option>
+						<option value="월세">월세</option>
+				</select>
+			</td>
+			<th>가격(만원) *</th>
+			<td><input type="text" id="deposit" class="w100" placeholder="보증금"> / <input type="text" id="rent" class="w100" placeholder="월세" disabled=""></td>
+		</tr>
+		<tr>
+			<th>면적유형 *</th>
+			<td colspan="3">
+				<select id="room_type" class="w150">
+					<option value="">선택</option>
+				</select>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+
+<div class="list-container">
+	<table class="list-table" id="tb_exclusive" style="display: none;">
+		<colgroup>
+			<col width="15%">
+			<col width="35%">
+			<col width="15%">
+			<col width="35%">
+		</colgroup>
+		<tbody>
+		<tr><td colspan="4" class="notify">직접 확보한 매물입니다.</td></tr>
+		<tr>
+			<th>소유주 *</th>
+			<td>
+				<input type="text" placeholder="소유주 이름" id="ex_owner_name" class="w100" name="owner_name">
+			</td>
+			<th>소유주 연락처</th>
+			<td>
+				<select class="selectbox w80" id="ex_owner_phone_1" name="owner_phone_1">
+					<option value="">선택</option>
+					<option value="010">010</option>
+					<option value="011">011</option>
+					<option value="016">016</option>
+					<option value="017">017</option>
+					<option value="018">018</option>
+					<option value="019">019</option>
+				</select>
+				<span>-</span>
+				<input type="text" id="ex_owner_phone_2" class="w80" name="owner_phone_2">
+				<span>-</span>
+				<input type="text" id="ex_owner_phone_3" class="w80" name="owner_phone_3">
+			</td>
+		</tr>
+		<tr>
+			<th>비고</th>
+			<td colspan="3">
+				<input type="text" id="ex_owner_comment" name="owner_comment" class="w100p" placeholder="소유주 연락처와 관련하여 특이사항이 있는 경우 적어주세요. ex) 부모님 대신 아들에게 연락해야 함 / 홍길동 010-1234-5678">
+			</td>
+		</tr>
+		<tr>
+			<th rowspan="2">동/호수 *</th>
+			<td rowspan="2">
+				<select id="ex_dong" class="w100" name="dong" data-type="exclusive">
+					<option value="">선택</option>
+				</select>
+				<input type="text" id="ex_ho" class="w100" name="ho"><span> 호</span>
+			</td>
+			<th rowspan="2">층/방향 *</th>
+			<td>
+				<span>전체 층 </span>
+				<select id="ex_apart_floor" class="w100" name="apart_floor" data-type="exclusive">
+					<option value="">선택</option>
+				</select>
+				<span class="ml-10">해당 층 </span>
+				<select id="ex_item_floor" class="w100" name="item_floor">
+					<option value="">선택</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<span>방향 </span>
+				<select id="ex_direction" class="w100" name="direction">
+					<option value="">선택</option>
+						<option value="동">동</option>
+						<option value="서">서</option>
+						<option value="남">남</option>
+						<option value="북">북</option>
+						<option value="남동">남동</option>
+						<option value="남서">남서</option>
+						<option value="북동">북동</option>
+						<option value="북서">북서</option>
+				</select>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+
+	<table class="list-table" id="tb_share" style="display: none;">
+		<colgroup>
+			<col width="15%">
+			<col width="35%">
+			<col width="15%">
+			<col width="35%">
+		</colgroup>
+		<tbody>
+		<tr><td colspan="4" class="notify">공동 중개 매물입니다.</td></tr>
+		<tr>
+			<th>중개사무소 *</th>
+			<td>
+				<input type="text" placeholder="직방중개사무소" id="share_owner_office" name="owner_office" class="w150">
+			</td>
+			<th>중개사 연락처 *</th>
+			<td>
+				<input type="text" id="share_owner_phone_1" class="w80" name="owner_phone_1">
+				<span>-</span>
+				<input type="text" id="share_owner_phone_2" class="w80" name="owner_phone_2">
+				<span>-</span>
+				<input type="text" id="share_owner_phone_3" class="w80" name="owner_phone_3">
+			</td>
+		</tr>
+		<tr>
+			<th rowspan="2">동</th>
+			<td rowspan="2">
+				<select id="share_dong" class="w150" name="dong" data-type="share">
+					<option value="">선택</option>
+				</select>
+			</td>
+			<th rowspan="2">층/방향</th>
+			<td>
+				<span>전체 층 </span>
+				<select id="share_apart_floor" class="w100" name="apart_floor" data-type="share">
+					<option value="">선택</option>
+				</select>
+				<span class="ml-10">해당 층 </span>
+				<select id="share_item_floor" class="w100" name="item_floor">
+					<option value="">선택</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<span>방향 </span>
+				<select id="share_direction" class="w100" name="direction">
+					<option value="">선택</option>
+						<option value="동">동</option>
+						<option value="서">서</option>
+						<option value="남">남</option>
+						<option value="북">북</option>
+						<option value="남동">남동</option>
+						<option value="남서">남서</option>
+						<option value="북동">북동</option>
+						<option value="북서">북서</option>
+				</select>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+
+<div class="list-container">
+	<table class="list-table" id="tb_basic">
+		<colgroup>
+			<col width="15%">
+			<col>
+		</colgroup>
+		<tbody>
+		<tr>
+			<th>입주가능일 <span id="movein_date_start">*</span></th>
+			<td><input type="text" id="movein_date" placeholder="최대 20자 ex) 즉시입주, 날짜협의, 8월 28일 이후" class="w100p"></td>
+		</tr>
+		<tr>
+			<th>한 줄 설명 *</th>
+			<td><input type="text" id="title" class="w100p" placeholder="최소 7자에서 최대 32자까지 입력 가능합니다."></td>
+		</tr>
+		<tr>
+			<th>상세설명</th>
+			<td>
+				<textarea id="description" rows="5" style="max-width: 100%; height: 220px;" placeholder="최소 20자. 상세 설명 및 제목을 작성하실 때 중개업소 홍보성 글 및 다른 매물 유도성 글을 남기실 경우, 검수반려 처리되시며, 반복적으로 올릴 시 이용 제한 되실 수 있습니다. 올리시는 해당 매물에 관한 설명만 작성해주세요."></textarea>
+			</td>
+		</tr>
+		<tr>
+			<th>담당자 한마디</th>
+			<td>
+				<textarea id="agent_comment" rows="5" style="max-width: 100%; height: 200px;" placeholder="최대 200자. 중개업소 및 담당자 본인에 대한 소개와 안내 사항 외 내용을 작성할 경우 검수반려 처리되며, 반복적으로 위반할 경우 이용에 제한이 있을 수 있습니다.
+- 작성예시:
+직방부동산은 허위매물 없는 정직한 중개와 믿을 만한 매물을 약속 드립니다. 오피스텔을 전문으로 취급하고 있으며, 픽업도 가능하니 언제든 연락주세요.
+- 반려사유에 해당하는 주요 내용:
+1. 해당 내용이 중개업소, 담당자 정보와 다르거나 확인이 어려운 경우
+ex) 김직방 공인중개사입니다(o) / 김실장입니다(x)
+2. 매물에 대한 홍보나 유도성 문구, 계약, 중개보수 관련 내용을 작성한 경우
+3. 중개업소나 담당자 전화번호를 기재한 경우 등"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<th>비밀메모</th>
+			<td><input type="text" id="secret_memo" placeholder="등록자만 볼 수 있는 메모입니다. 매물 정보에는 노출되지 않습니다."></td>
+		</tr>
+		<tr>
+			<th>담당자 *</th>
+			<td>
+				<select id="agent_no" class="w200">
+					<option>대표 공인중개사</option>
+				</select>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	<div class="btn-group">
+		<button class="btn btn-submit" id="btn_save" type="button">저장</button>
+	</div>
+</div>
+
+
+	    
+	    <div id="global_indicator_div" class="global-indicator-div" style="display: none">
+		    <div class="global-loader"></div><br>
+		    <p style="display: block" id="global_loader_text">ing...</p>
+	    </div>
+	    
+    </div>
+
+
+    <script type="text/javascript" src="./아파트 매물등록 - 직방 관리자_files/jquery.min.js"></script>
+    <script type="text/javascript" src="./아파트 매물등록 - 직방 관리자_files/typeahead.bundle.min.js"></script>
+    <script type="text/javascript" src="./아파트 매물등록 - 직방 관리자_files/handlebars.min.js"></script>
+    <script type="text/javascript" src="./아파트 매물등록 - 직방 관리자_files/jquery.lazyload.min.js"></script>
+    <script type="text/javascript" src="./아파트 매물등록 - 직방 관리자_files/jquery-ui.min.js"></script>
+	<script src="./아파트 매물등록 - 직방 관리자_files/platform.js" async="" defer="" gapi_processed="true"></script>
+    
+	<script type="text/javascript" src="./아파트 매물등록 - 직방 관리자_files/plupload.full.min.js"></script>
+	<script type="text/javascript" src="./아파트 매물등록 - 직방 관리자_files/ko.js"></script>
+	<script type="text/javascript" src="./아파트 매물등록 - 직방 관리자_files/jquery.sortable.js"></script>
+	<script type="text/javascript">
+		var selected = [];
+		var itemImages = [];
+
+		$(document).ready(function() {
+
+			$("#target_apart").change(function() {
+				var apartData = $("#target_apart option:selected").data();
+
+				if (apartData.area_danji_id) {
+					getApartInfo(apartData.area_danji_id);
+				} else {
+					$("#room_type").empty().append("<option value=''>선택</option>");
+				}
+			});
+
+			$("input:radio[name=exclusive_type]").change(function() {
+				var self = $(this);
+				var exclusiveTypeValue = self.val();
+
+				if (!$("#target_apart").val()) {
+					alert("단지명을 선택해주세요.");
+					self.prop("checked", false);
+					return false;
+				}
+
+				var apartData = $("#target_apart option:selected").data();
+				var isVrAvailable = apartData.is_vr_available.toLowerCase() === 'true';
+
+				if (exclusiveTypeValue === "1" && !isVrAvailable) {
+					$("#tr_image").show();
+				} else {
+					$("#tr_image").hide();
+				}
+
+				if (exclusiveTypeValue === "1") {
+					$("#tb_exclusive").show();
+					$("#tb_share").hide();
+					$("#movein_date_start").show();
+				} else {
+					$("#tb_exclusive").hide();
+					$("#tb_share").show();
+					$("#movein_date_start").hide();
+				}
+
+				//$("#tb_basic").show();
+			});
+
+			$("#sales_type").change(function() {
+				$("#rent").val("");
+				$("#rent").prop("disabled", $(this).val() !== '월세');
+			});
+
+			$("select[name=dong]").change(function() {
+				var unitMaxFloor = $(this).find("option:selected").data('floor');
+				var apartMaxFloor = $(this).find("option:selected").data('apart_max_floor');
+				var maxFloor = 0;
+				var list = null;
+
+				var table = "#tb_" + $(this).data("type");
+				var apartFloorList = $("select[name=apart_floor]", table);
+				var itemFloorList = $("select[name=item_floor]", table);
+
+				apartFloorList.empty().append('<option value="">선택</option>');
+				itemFloorList.empty().append('<option value="">선택</option>');
+
+				if (unitMaxFloor === 0) {
+					list = apartFloorList;
+					maxFloor = apartMaxFloor > 0 ? apartMaxFloor : 99;
+				} else {
+					maxFloor = unitMaxFloor;
+					list = itemFloorList;
+				}
+
+				for (var i = 1; i <= maxFloor; i++) {
+					list.append('<option value=' + i + '>' + i + '층</option>');
+				}
+
+				if (unitMaxFloor === 0) {
+					apartFloorList.prop("disabled", false);
+				} else {
+					apartFloorList.append('<option value=' + unitMaxFloor + '>' + unitMaxFloor + '층</option>');
+					apartFloorList.val(unitMaxFloor);
+					apartFloorList.prop("disabled", true);
+				}
+				
+				if ($(this).data("type") === 'share') {
+					itemFloorList.empty();
+					itemFloorList.append('<option value="">선택</option>')
+					itemFloorList.append('<option value="고">고층</option>')
+					itemFloorList.append('<option value="중">중층</option>')
+					itemFloorList.append('<option value="저">저층</option>')
+					itemFloorList.append('<option value="모름">모름</option>')
+				}
+			});
+
+			$("select[name=apart_floor]").change(function() {
+				var apartFloor = $(this).val();
+				var table = "#tb_" + $(this).data("type");
+				var itemFloorList = $("select[name=item_floor]", table);
+				itemFloorList.empty().append('<option value="">선택</option>');
+				
+				if ($(this).data("type") === 'share') {
+					itemFloorList.append('<option value="">선택</option>')
+					itemFloorList.append('<option value="고">고층</option>')
+					itemFloorList.append('<option value="중">중층</option>')
+					itemFloorList.append('<option value="저">저층</option>')
+					itemFloorList.append('<option value="모름">모름</option>')
+				} else {
+					for (var i = 1; i <= apartFloor; i++) {
+						itemFloorList.append('<option value=' + i + '>' + i + '층</option>');
+					}
+				}
+
+
+			});
+
+			$("#btn_save").click(function() {
+				if (validateSaveItem() && confirm("저장 하시겠습니까?")) {
+					$("#btn_save")
+						.prop("disabled", true).text("저장중...").removeClass("btn-submit").addClass("btn-orange");
+
+					var param = getSaveParam();
+					$.post("/ApartItem/AddItem",
+						param,
+						function(id) {
+							if (id) {
+								location.href = "/apartitem/ItemInfo?id=" + id;
+							} else {
+								alert("저장에 실패하였습니다.");
+							}
+						}).fail(function() {
+						alert("저장에 실패하였습니다. 관리자에게 문의해주세요.");
+					}).always(function() {
+						$("#btn_save")
+							.prop("disabled", false).text("저장").removeClass("btn-orange").addClass("btn-submit");
+					});
+				}
+				return false;
+			});
+
+			getUploader().init();
+		});
+
+		function getApartInfo(areaDanjiId) {
+			$.get("/ApartItem/GetApartInfo",
+				{ area_danji_id: areaDanjiId, user_no: parseInt('4803011') },
+				function(result) {
+					setRoomTypeOptions(result);
+					setBuildingOptions(result);
+					setAgentOptions(result);
+				});
+		}
+
+		function setRoomTypeOptions(result) {
+			if (result.room_types && result.room_types.length > 0) {
+				$("#room_type").empty().append("<option value=''>선택</option>");
+				$.each(result.room_types,
+					function(i, room) {
+						$("#room_type").append("<option value='" + room.id + "'>" + room.name + "</option>");
+					});
+			} else {
+				$("#room_type").empty().append("<option value=''>선택</option>");
+			}
+		}
+
+		function setBuildingOptions(result) {
+			var apartMaxFloor = result.apart && result.apart.최고층수 ? result.apart.최고층수 : 0;
+
+			if (result.buildings && result.buildings.length > 0) {
+				$("#ex_dong").empty().append("<option value=''>선택</option>");
+				$("#share_dong").empty().append("<option value=''>선택</option>");
+
+				$.each(result.buildings,
+					function(i, building) {
+						var option =
+							"<option value='" +
+								building.id +
+								"' data-floor='" +
+								building.층수 +
+								"' data-apart_max_floor='" +
+								apartMaxFloor +
+								"'>" +
+								building.name +
+								"</option>";
+
+						$("#ex_dong").append(option);
+						$("#share_dong").append(option);
+					});
+			} else {
+				$("#ex_dong").empty().append("<option value=''>선택</option>");
+				$("#share_dong").empty().append("<option value=''>선택</option>");
+			}
+		}
+
+		function setAgentOptions(result) {
+			if (result.agents && result.agents.length > 0) {
+				$("#agent_no").empty().append("<option value=''>대표 공인중개사</option>");
+				$.each(result.agents,
+					function(i, agent) {
+						$("#agent_no")
+							.append("<option value='" + agent.agent_no + "'>" + agent.user_name + "</option>");
+					});
+			} else {
+				$("#agent_no").empty().append("<option value=''>대표 공인중개사</option>");
+			}
+		}
+
+		function validateSaveItem() {
+			var targetApart = $("#target_apart").val();
+			var salesType = $("#sales_type").val();
+			var deposit = $("#deposit").val();
+			var rent = $("#rent").val();
+
+			if (!targetApart) {
+				alert("단지명을 선택해주세요.");
+				$("#target_apart").focus();
+				return false;
+			}
+			var exclusiveType = $("input[name=exclusive_type]:checked").val();
+			if (!exclusiveType || (exclusiveType !== '1' && exclusiveType !== '2')) {
+				alert("매물출처를 선택해주세요.");
+				return false;
+			}
+
+			// 사진은 필수는 아니지만, 등록하려면 5장 이상 해야 함
+			var apartData = $("#target_apart option:selected").data();
+			var isVrAvailable = apartData.is_vr_available.toLowerCase() === 'true';
+			var saveItemImages = !isVrAvailable && exclusiveType === '1' ? itemImages : null;
+			if (saveItemImages != null && saveItemImages.length > 0 && saveItemImages.length < 5) {
+				alert("사진은 최소 5장 이상 등록해야 합니다.");
+				return false;
+			}
+
+			if (!salesType) {
+				alert("거래유형을 선택해주세요.");
+				$("#sales_type").focus();
+				return false;
+			}
+			if (!deposit) {
+				if (salesType === "월세") {
+					alert("보증금을 입력해주세요.");
+				} else if (salesType === "전세") {
+					alert("전세가를 입력해주세요.");
+				} else if (salesType === "매매") {
+					alert("매매가를 입력해주세요.");
+				}
+				$("#deposit").focus();
+				return false;
+			} else if ((salesType === "전세" || salesType === "매매") && parseInt(deposit) === 0) {
+				alert("매물 가격이 잘못 입력되었습니다.");
+				$("#deposit").focus();
+				return false;
+			} else if (parseInt(deposit) >= 100000000) {
+				alert("매물 가격은 만원 단위로 입력하셔야 합니다.\n예) 1억 → 10000만원");
+				$("#deposit").focus();
+				return false;
+			}
+			if (salesType === "월세") {
+				if (!rent || parseInt(rent) >= 100000000) {
+					alert(rent ? "매물 가격은 만원 단위로 입력하셔야 합니다.\n예) 1억 → 10000만원" : "월세를 입력해주세요");
+					$("#rent").focus();
+					return false;
+				}
+			}
+
+			if (!$("#room_type").val()) {
+				alert("면적유형을 선택해주세요.");
+				$("#room_type").focus();
+				return false;
+			}
+
+			var exclusiveTypeValue = exclusiveType === '1' ? "exclusive" : "share";
+			var targetTable = "#tb_" + exclusiveTypeValue;
+
+
+			if (exclusiveType === "1") {
+				var owner_name = $("input[name=owner_name]", targetTable).val();
+				var ownerNameLabel = exclusiveType === '1' ? "소유주" : "대표자";
+				if (!owner_name) {
+					alert(ownerNameLabel + "를 입력해주세요.");
+					$("input[name=owner_name]", targetTable).focus();
+					return false;
+				}
+
+				if (!$("select[name=dong]", targetTable).val()) {
+					alert("동을 선택해주세요.");
+					$("select[name=dong]", targetTable).focus();
+					return false;
+				}
+			}
+
+			var ownerOffice = $("input[name=owner_office]", targetTable).val();
+			if (exclusiveType === "2" && !ownerOffice) {
+				alert("중개사무소명을 입력해주세요.");
+				$("input[name=owner_office]", targetTable).focus();
+				return false;
+			}
+
+			if (exclusiveType === '2') {
+				var ownerPhone1 = $("input[name=owner_phone_1]", targetTable).val();
+				var ownerPhone2 = $("input[name=owner_phone_2]", targetTable).val();
+				var ownerPhone3 = $("input[name=owner_phone_3]", targetTable).val();
+
+				if (!ownerPhone1) {
+					alert("정확한 연락처를 입력해주세요.");
+					$("select[name=owner_phone_1]", targetTable).focus();
+					return false;
+				}
+				if (!ownerPhone2 || !(ownerPhone2.length === 3 || ownerPhone2.length === 4)) {
+					alert("정확한 연락처를 입력해주세요.");
+					$("input[name=owner_phone_2]", targetTable).focus();
+					return false;
+				}
+				if (!ownerPhone3 || ownerPhone3.length !== 4) {
+					alert("정확한 연락처를 입력해주세요.");
+					$("input[name=owner_phone_3]", targetTable).focus();
+					return false;
+				}
+			}
+
+			var apartFloor = $("select[name=apart_floor]", targetTable).val();
+			var itemFloor = $("select[name=item_floor]", targetTable).val();
+
+			// 직접확보 일때만 필수
+			if (exclusiveType === "1") {
+				if (!$("input[name=ho]", targetTable).val()) {
+					alert("호를 입력해주세요.");
+					$("input[name=ho]", targetTable).focus();
+					return false;
+				}
+				if (!apartFloor) {
+					alert("전체 층을 선택해주세요.");
+					$("select[name=apart_floor]", targetTable).focus();
+					return false;
+				}
+				if (!itemFloor) {
+					alert("해당 층을 선택해주세요.");
+					$("select[name=item_floor]", targetTable).focus();
+					return false;
+				}
+				if (!$("select[name=direction]", targetTable).val()) {
+					alert("방향을 선택해주세요.");
+					$("select[name=direction]", targetTable).focus();
+					return false;
+				}
+				if (!$("#movein_date").val()) {
+					alert("입주가능일을 입력해주세요.");
+					$("#movein_date").focus();
+					return false;
+				}
+			}
+
+			// 전체층수보다 해당층수가 작아야 함
+			if (apartFloor && itemFloor) {
+				if (parseInt(apartFloor) < parseInt(itemFloor)) {
+					alert("정확한 층수를 선택해주세요.");
+					$("select[name=item_floor]", targetTable).focus();
+					return false;
+				}
+			}
+
+			// 추가정보 validation
+			var moveinLength = $.trim($("#movein_date").val()).replace(/^\s+|\s+$|\s+(?=\s)/g, '').length;
+			if (moveinLength > 20) {
+				alert("입주가능일은 20자 이상 입력 할 수 없습니다.");
+				$("#movein_date").focus();
+				return false;
+			}
+
+			if (!$.trim($("#title").val())) {
+				alert("한 줄 설명을 입력해주세요.");
+				$("#title").focus();
+				return false;
+			}
+			var titleLength = $.trim($("#title").val()).replace(/^\s+|\s+$|\s+(?=\s)/g, '').length;
+			if (titleLength < 7) {
+				alert("한 줄 설명을 7자 이상 입력해주세요.");
+				$("#title").focus();
+				return false;
+			} else if (titleLength > 32) {
+				alert("한 줄 설명은 32글자 이상 입력 할 수 없습니다.");
+				$("#title").focus();
+				return false;
+			}
+
+			if ($.trim($("#description").val()) &&
+				$("#description").val().replace(/^\s+|\s+$|\s+(?=\s)/g, '').length < 20) {
+				alert("상세설명을 20자 이상 입력해주세요.");
+				$("#description").focus();
+				return false;
+			}
+
+			if ($("#agent_comment").val().replace(/^\s+|\s+$|\s+(?=\s)/g, '').length > 200) {
+				alert("담당자 한마디는 200글자 이상 입력 할 수 없습니다.");
+				$("#agent_comment").focus();
+				return false;
+			}
+
+			return true;
+		}
+
+		function getSaveParam() {
+			var param = {};
+
+			// vr 등록안되고 직접확보인 경우에만 사진 저장 (필수는 아님)
+			var apartData = $("#target_apart option:selected").data();
+			var isVrAvailable = apartData.is_vr_available.toLowerCase() === 'true';
+			var exclusiveType = $("input[name=exclusive_type]:checked").val();
+			var saveItemImages = !isVrAvailable && exclusiveType === '1' ? itemImages : null;
+			var itemImageValue = saveItemImages != null && saveItemImages.length > 0
+				? "[\"" + saveItemImages.join("\",\"") + "\"]"
+				: null;
+
+			var exclusiveTypeValue = exclusiveType === '1' ? "exclusive" : "share";
+			var targetTable = "#tb_" + exclusiveTypeValue;
+
+			param.area_danji_id = $("#target_apart").val();
+			param.sales_type = $("#sales_type").val();
+			param.deposit = $("#deposit").val();
+			param.rent = $("#rent").val();
+			param.room_type_id = $("#room_type").val();
+			param.images = itemImageValue;
+			param.user_no = parseInt('4803011');
+			param.agent_no = $("#agent_no").val() ? $("#agent_no").val() : null;
+			param.exclusive_type = exclusiveType;
+
+			param.area_building_id = $("select[name=dong]", targetTable).val();
+			param.apart_floor = $("select[name=apart_floor]", targetTable).val();
+			param.item_floor = $("select[name=item_floor]", targetTable).val();
+			param.ho = $("input[name=ho]", targetTable).val();
+			param.direction = $("select[name=direction]", targetTable).val();
+			param.owner_name = exclusiveType === '1' ? $("input[name=owner_name]", targetTable).val() : null;
+			param.owner_office = exclusiveType === '2' ? $("input[name=owner_office]", targetTable).val() : null;
+			param.owner_comment = exclusiveType === '1' ? $("input[name=owner_comment]", targetTable).val() : null;
+			
+			var owner_phone_1 = exclusiveType === '1' ? $("select[name=owner_phone_1]", targetTable).val() : $("input[name=owner_phone_1]", targetTable).val() 
+			param.owner_phone =
+				owner_phone_1 +
+				$("input[name=owner_phone_2]", targetTable).val() +
+				$("input[name=owner_phone_3]", targetTable).val();
+
+			param.movein_date = $("#movein_date").val();
+			param.title = $("#title").val();
+			param.description = $("#description").val();
+			param.agent_comment = $("#agent_comment").val();
+			param.secret_memo = $("#secret_memo").val();
+
+			return param;
+		}
+
+		function getUploader() {
+			var uploader = new plupload.Uploader({
+				runtimes: 'html5,flash,silverlight,html4',
+				browse_button: 'pickfiles',
+				container: document.getElementById('image_area'),
+				url: "/apartItem/plupload/upload",
+				filters: {
+					max_file_size: '10mb',
+					mime_types: [
+						{ title: "Image files", extensions: "jpg,png,jpeg" }
+					],
+					prevent_duplicates: false
+				},
+				flash_swf_url: '~/Scripts/plupload/Moxie.swf"',
+				silverlight_xap_url: '~/Scripts/plupload/Moxie.xap',
+				multipart_params: {
+					user_no: parseInt('4803011')
+				},
+				init: {
+					PostInit: function() {
+						bindSelectable();
+					},
+
+					FilesAdded: function(up, files) {
+						var item_images_length = (itemImages == null ? 0 : itemImages.length);
+						var limit_count = 20;
+						var one_alert = true;
+						plupload.each(files,
+							function(file) {
+								if (item_images_length < 20) {
+									addImage("file-" + file.id, null, null, false, true);
+									item_images_length++;
+									uploader.start();
+								} else {
+									uploader.removeFile(file);
+									if (one_alert) {
+										alert("이미지는 " + limit_count + "장 까지만 등록가능합니다.");
+										one_alert = false;
+									}
+								}
+							});
+					},
+
+					BeforeUpload: function(up, file) {
+						var item_images_length = (itemImages == null ? 0 : itemImages.length);
+						var limit_count = 20;
+						if (item_images_length >= limit_count) {
+							uploader.removeFile(file);
+							$("#file-" + file.id).remove();
+							alert("이미지는 " + limit_count + "장 까지만 등록가능합니다.");
+						}
+					},
+
+					FileUploaded: function(up, file, data) {
+						var message = "";
+						if (data.response) message = data.response;
+						message = message.replace('<pre style="word-wrap: break-word; white-space: pre-wrap;">', '');
+
+						try {
+							var response = JSON.parse(message);
+							onImageUploaded("#file-" + file.id, response);
+						} catch (e) {
+							alert("해당 이미지는 업로드 도중 실패하였습니다.\n다시 한번 시도해주세요.");
+							$("#file-" + file.id).remove();
+							refresh();
+						}
+					},
+
+					UploadProgress: function(up, file) {
+						var id = "#file-" + file.id;
+						$(id + " .progress").show();
+						$(id + " .progress-bar").css("width", file.percent + "%");
+					},
+
+					Error: function(up, err) {
+						var message = "plupload fail";
+
+						if (err.file) {
+							message += (", file=" + err.file.name);
+							message += (", code=" + err.code);
+							var a = [1, 2];
+							Object.keys(plupload)
+								.filter(function(v) { return plupload[v] == err.code; })
+								.forEach(function(v) { message += (", key=" + v); });
+
+							if (err.code == -602) {
+								alert("중복된 파일입니다. 확인 후 다시 시도해주세요.");
+							} else if (err.code == -600) {
+								alert("해당 이미지 [ " +
+									err.file.name +
+									" ] 는 업로드 최대용량을 초과하였습니다. 10MB를 초과 시 이미지 등록이 불가능합니다.");
+							} else {
+								alert("해당 이미지 [ " + err.file.name + " ] 는 업로드 도중 실패하였습니다.");
+							}
+
+							$("#file-" + err.file.id).remove();
+							refresh();
+						}
+					}
+
+				}
+			});
+			return uploader;
+		}
+
+		function addImage(id, url, original_url, show_layer, init_layer) {
+			$("#file_area").show();
+
+			var progressBar = $("<div />").addClass("progress-bar");
+			var progress = $("<div />").addClass("progress");
+			progress.append(progressBar);
+
+			var selectable_content = $("<div />").addClass("selectable-content");
+			if (url) {
+				selectable_content.append($("<img />").attr("src", url));
+			}
+			var selectable_index = $("<span />");
+			var selectable_layer = $("<div />").addClass("selectable-layer").append(selectable_index);
+			var selectable_del = $("<button />").addClass("selectable-del").text("X");
+			selectable_layer.append(selectable_del);
+
+			var item = $("<div />").addClass("selectable");
+			if (id) {
+				item.attr("id", id);
+			}
+			item.data("original-url", original_url);
+			item.append(selectable_content).append(selectable_layer);
+			item.append(progress);
+
+			$("#base_div").before(item);
+			progress.hide();
+
+			if (show_layer) {
+				selected.push(selectable_layer[0]);
+				selectable_layer.show();
+			}
+
+			if (init_layer) {
+				selectable_layer.show();
+				progress.show();
+				progressBar.css("width", "5%");
+				selectable_index.hide();
+				selectable_del.hide();
+			} else {
+				bindSelectable();
+				renumber();
+			}
+
+			$(".selectable-del").unbind("click").click(function() {
+				$(this).parent().parent().hide();
+				refresh();
+			});
+		}
+
+		function refresh() {
+			selected = [];
+			$(".selectable").each(function(i, v) {
+				var selectable_layer = $(v).find(".selectable-layer");
+
+				if (!selectable_layer.is(":hidden")) {
+					selected.push(selectable_layer[0]);
+				}
+			});
+			renumber();
+			save();
+		}
+
+		function onImageUploaded(id, data) {
+			var img = $("<img />").attr("src", data.api);
+			$(id).data("original-url", data.s3);
+			$(id).find(".selectable-content").append(img);
+			$(id).find(".selectable-layer").show();
+			$(id).find("button").show();
+			$(id).find("span").show();
+			selected.push($(id).find(".selectable-layer")[0]);
+			$(id).find(".progress").hide();
+
+			bindSelectable();
+			renumber();
+			save();
+		}
+
+		function bindSelectable() {
+			$("#files").sortable({ items: ':not(.disabled)' }).bind("sortupdate",
+				function() {
+					selected = [];
+					$(".selectable").each(function(i, v) {
+						var selectable_layer = $(v).find(".selectable-layer");
+
+						if (!selectable_layer.is(":hidden")) {
+							selected.push(selectable_layer[0]);
+						}
+					});
+					renumber();
+					save();
+				});
+		}
+
+		function renumber() {
+			for (var i = 0; i < selected.length; i++) {
+				var layer = $(selected[i]);
+				if (!layer.is(":hidden")) {
+					var num = layer.find("span");
+					num.text(i + 1);
+				}
+			}
+		}
+
+		function save() {
+			var images = [];
+			$("#files .selectable").each(function(i, v) {
+				if ($(v).find(".selectable-layer").find("span").is(":visible")) {
+					var original_url = $(v).data("original-url");
+					images.push(original_url.split(".com")[1]);
+				}
+			});
+
+			itemImages = images;
+			console.log(itemImages);
+		}
+
+	</script>
+
+
+    <script>
+	    
+	    function start() {
+			gapi.load("auth2", function () {
+				if (!gapi.auth2.getAuthInstance()) gapi.auth2.init();
+			});
+		}
+
+		$("document").ready(function () {
+			var cannotScrollUrl =
+				"/user?,/user/blacklist?,/user/smsblacklist,/item/notify2?,/apartitem/notify?,/item/itemvisitreport,/apartitem/visitreport,/item/notifyroom";
+			var cannotScrollUrlArr = cannotScrollUrl.split(",");
+			var curUrl = window.location.href.toLowerCase();
+			var cannotScroll = false;
+			for (var url in cannotScrollUrlArr) {
+				if (curUrl.indexOf(cannotScrollUrlArr[url]) !== -1) {
+					cannotScroll = true;
+				}
+			}
+
+			if (cannotScroll) {
+				$("body").attr("oncontextmenu", "return false").attr("ondragstart", "return false").attr("onselectstart", "return false");
+			} else {
+				$("body").attr("oncontextmenu", "return true").attr("ondragstart", "return true").attr("onselectstart", "return true");
+			}
+
+
+            $(".btn-menu").click(function() {
+                $("#header .gnb-container").toggleClass("on");
+            });
+            $("#header .dropdown-toggle").click(function() {
+                $("#header li.dropdown").removeClass("on");
+                $(this).parent("li.dropdown").addClass("on")
+            });
+
+            $("#btn-signout").click(function () {
+            	gapi.auth2.getAuthInstance().signOut().then(function () {
+            		console.log("3");
+            		document.getElementById('logoutForm').submit()
+            		console.log("4");
+            	});
+            	console.log("5");
+            });
+		});
+
+		function getMaskedData(key, user_type, data_type, fromUrl) {
+			//user_type : user, client, agent
+			var requestUrl = "/user/getMaskedData";
+			
+			var data = {
+				key: key,
+				user_type: user_type,
+				data_type: data_type,
+				url: fromUrl
+			};
+			console.log(data);
+			$.ajax({
+				url: requestUrl,
+				data: data,
+				success: function (result) {
+					//console.log(result);
+					if (result.status === "ok") {
+						alert(result.msg);
+					} else {
+						console.log("데이터를 가져오는데 문제가 있습니다.\n" + result.msg);
+					}
+				},
+				error: function (XMLHttpRequest, textStatus, errorThrown) {
+					console.log("데이터를 가져오는데 문제가 있습니다.\n" + result.msg);
+				}
+			});
+		}
+		
+		function prettyPhone(s) {
+			console.log(s, "s");
+			if (s == undefined || s.length == 0) return s;
+
+			switch (s.length) {
+			case 8:
+				return s.substring(0, 4) + "-" + s.substring(4, s.length);
+			case 9:
+				return s.substring(0, 2) + "-" + s.substring(2, 5) + "-" + s.substring(5, s.length);
+			case 10:
+				if (s.startsWith("02")) {
+					return s.substring(0, 2) + "-" + s.substring(2, 6) + "-" + s.substring(6, s.length);
+				} else {
+					return s.substring(0, 3) + "-" + s.substring(3, 6) + "-" + s.substring(6, s.length);
+				}
+			case 11:
+				return s.substring(0, 3) + "-" + s.substring(3, 7) + "-" + s.substring(7, s.length);
+			case 12:
+				return s.substring(0, 4) + "-" + s.substring(4, 8) + "-" + s.substring(8, s.length);
+			default:
+				return s;
+			}
+		}
+	    
+	    function prettyDate(s) {
+		    if (s == undefined || s.length == 0) return s;
+
+		    switch (s.length) {
+		    case 8:
+			    return s.substring(0, 4) + "-" + s.substring(4, 6) + "-" + s.substring(6, s.length);
+		    case 6:
+			    return s.substring(0, 4) + "-" + s.substring(4, s.length);
+		    case 24:
+			    return s.substring(0, 10) + " " + s.substring(11, 19);
+		    default:
+			    return s;
+		    }
+	    }
+	    
+	    function showGlobalIndicator(str) {
+		    var text = str !== undefined ? str : '데이터 조회중'
+		    $('#global_loader_text').text(text);
+		    $('#global_indicator_div').show();
+	    }
+	    
+	    function hideGlobalIndicator() {
+		    $("#global_indicator_div").hide();
+	    }
+	    
+	    function isShowGlobalIndicator() {
+		    return $('#global_indicator_div').css('display') !== 'none'
+	    }
+    </script>
+
+
+<iframe id="ssIFrame_google" sandbox="allow-scripts allow-same-origin" aria-hidden="true" frame-border="0" src="./아파트 매물등록 - 직방 관리자_files/iframe.html" style="position: absolute; width: 1px; height: 1px; left: -9999px; top: -9999px; right: -9999px; bottom: -9999px; display: none;"></iframe></body></html>
